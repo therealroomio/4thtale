@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import type { PointerEvent } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Navbar from "./Navbar";
@@ -35,38 +36,55 @@ const WORKS = [
     title: "Saucony Run As One",
     year: "2025",
     image: "/images/image_19.gif",
+    slug: "saucony-run-as-one",
   },
   {
     title: "Jeddah Delta Hotel",
     year: "2024",
     image: "/images/image_24.png",
+    slug: "jeddah-delta-hotel",
   },
-  { title: "Flow Water", year: "2025", image: "/images/image_37.png" },
+  {
+    title: "Flow Water",
+    year: "2025",
+    image: "/images/image_37.png",
+    slug: "flow-water",
+  },
   {
     title: "Crocs ComplexCon",
     year: "2025",
     image: "/images/image_21.gif",
+    slug: "crocs-complexcon",
   },
-  { title: "LEGO x Nike", year: "2025", image: "/images/image_22.gif" },
+  {
+    title: "LEGO x Nike",
+    year: "2025",
+    image: "/images/image_22.gif",
+    slug: "lego-x-nike",
+  },
   {
     title: "FIFA World Cup 2026",
     year: "2024",
     image: "/images/image_25.png",
+    slug: "fifa-world-cup-2026",
   },
   {
     title: "Lacoste Melrose",
     year: "2024",
     image: "/images/image_31.png",
+    slug: "lacoste-melrose",
   },
   {
     title: "CUBE Exchange",
     year: "2025",
     image: "/images/image_23.gif",
+    slug: "cube-exchange",
   },
   {
     title: "Group Therapy",
     year: "2025",
     image: "/images/image_30.png",
+    slug: "group-therapy",
   },
 ];
 
@@ -127,12 +145,23 @@ function MarqueeStrip() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
+  const [supportsHover, setSupportsHover] = useState(true);
   const dragState = useRef({ startX: 0, scrollLeft: 0, pointerId: 0 });
 
   const items = useMemo(
     () => [...MARQUEE_IMAGES, ...MARQUEE_IMAGES],
     []
   );
+
+  // Detect if device supports hover (desktop) vs touch-only (mobile)
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+    setSupportsHover(mediaQuery.matches);
+
+    const handler = (e: MediaQueryListEvent) => setSupportsHover(e.matches);
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, []);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -143,7 +172,10 @@ function MarqueeStrip() {
 
     const tick = () => {
       const el = containerRef.current;
-      if (el && !isHovered && !isDragging) {
+      // On mobile (no hover support), only pause during dragging
+      // On desktop (hover support), pause on both hover and dragging
+      const shouldPause = isDragging || (supportsHover && isHovered);
+      if (el && !shouldPause) {
         el.scrollLeft += speed;
         const midpoint = el.scrollWidth / 2;
         if (el.scrollLeft >= midpoint) {
@@ -155,7 +187,7 @@ function MarqueeStrip() {
 
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [isDragging, isHovered]);
+  }, [isDragging, isHovered, supportsHover]);
 
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
@@ -293,8 +325,9 @@ export default function Home() {
           </div>
           <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
             {WORKS.map((work) => (
-              <div
+              <Link
                 key={work.title}
+                href={`/work/${work.slug}`}
                 className="group overflow-hidden rounded-xl bg-white transition-transform duration-200 hover:-translate-y-1 sm:rounded-2xl"
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-neutral-100">
@@ -310,7 +343,7 @@ export default function Home() {
                   <span>{work.title}</span>
                   <span className="text-neutral-500">{work.year}</span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </section>
