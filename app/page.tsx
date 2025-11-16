@@ -254,18 +254,18 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white text-black">
       <Navbar />
-      <main className="mx-auto flex max-w-7xl flex-col gap-16 px-4 py-24 sm:gap-20 sm:px-6 md:gap-24 lg:px-20 lg:py-32">
+      <main className="flex w-full flex-col gap-12 px-4 py-20 sm:gap-16 sm:px-6 md:gap-20 md:px-8 lg:gap-24 lg:px-12 xl:gap-28 xl:px-16 2xl:px-20">
         {/* Hero Section */}
-        <header className="reveal-base flex min-h-[60vh] flex-col items-center justify-center gap-6 text-center sm:min-h-[70vh] sm:gap-8" ref={setRevealRef as any}>
-          <h1 className="text-5xl font-bold leading-none tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
+        <header className="reveal-base flex min-h-[60vh] w-full flex-col items-center justify-center gap-4 px-4 text-center sm:min-h-[70vh] sm:gap-6 md:gap-8" ref={setRevealRef as any}>
+          <h1 className="w-full text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-[7rem]">
             Mueez Khurshid
           </h1>
-          <h2 className="text-2xl font-normal sm:text-3xl md:text-4xl lg:text-5xl">
+          <h2 className="w-full text-xl font-normal sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
             Toronto Based Creative
           </h2>
           <a
             href="#contact"
-            className="group mt-2 inline-flex items-center gap-2 text-base font-medium underline underline-offset-4 transition-transform hover:-translate-y-0.5 sm:mt-4 sm:text-lg"
+            className="group mt-2 inline-flex items-center gap-2 text-sm font-medium underline underline-offset-4 transition-transform hover:-translate-y-0.5 sm:mt-4 sm:text-base md:text-lg"
           >
             Get In Touch
             <span className="transition-transform group-hover:translate-x-1">
@@ -280,18 +280,18 @@ export default function Home() {
         </section>
 
         {/* Brand Logos Section */}
-        <section className="reveal-base space-y-8 sm:space-y-12" ref={setRevealRef as any}>
-          <h3 className="px-4 text-center text-base font-normal text-neutral-700 sm:text-lg lg:text-xl">
+        <section className="reveal-base w-full space-y-6 sm:space-y-8 md:space-y-10" ref={setRevealRef as any}>
+          <h3 className="w-full text-center text-sm font-normal text-neutral-700 sm:text-base md:text-lg lg:text-xl">
             Over 100 design projects created for top brands including
           </h3>
-          <div className="flex flex-wrap items-center justify-center gap-6 opacity-60 grayscale sm:gap-8 lg:gap-12">
+          <div className="flex w-full flex-wrap items-center justify-center gap-4 opacity-60 grayscale sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12">
             {BRAND_LOGOS.map((logo, index) => (
-              <div key={index} className="relative h-8 w-20 sm:h-10 sm:w-24">
+              <div key={index} className="relative h-6 w-16 sm:h-8 sm:w-20 md:h-10 md:w-24 lg:h-12 lg:w-28">
                 <Image
                   src={logo.src}
                   alt={logo.alt}
                   fill
-                  sizes="(max-width: 640px) 80px, 100px"
+                  sizes="(max-width: 640px) 64px, (max-width: 768px) 80px, (max-width: 1024px) 96px, 112px"
                   className="object-contain"
                 />
               </div>
@@ -300,22 +300,22 @@ export default function Home() {
         </section>
 
         {/* Latest Work Section */}
-        <section className="reveal-base space-y-6 sm:space-y-8" id="work" ref={setRevealRef as any}>
-          <div className="flex flex-col gap-3 sm:gap-4">
+        <section className="reveal-base w-full space-y-5 sm:space-y-6 md:space-y-8" id="work" ref={setRevealRef as any}>
+          <div className="flex w-full flex-col gap-2 sm:gap-3 md:gap-4">
             <p className="text-xs font-medium uppercase tracking-wider text-neutral-500 sm:text-sm">
               • Work
             </p>
-            <h3 className="text-3xl font-bold sm:text-4xl md:text-5xl lg:text-[3.5rem]">
+            <h3 className="text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.5rem]">
               Latest work
             </h3>
-            <p className="max-w-3xl text-base leading-relaxed text-neutral-700 sm:text-lg">
+            <p className="w-full text-sm leading-relaxed text-neutral-700 sm:text-base md:text-lg lg:max-w-4xl">
               Dive into my most recent work — a mix of design exploration,
               brand innovation, and 3D crafted experiences that blur the lines
               between physical and digital.
             </p>
             <a
               href="#contact"
-              className="group mt-1 inline-flex items-center gap-2 text-sm font-medium text-neutral-700 underline underline-offset-4 sm:mt-2 sm:text-base"
+              className="group mt-1 inline-flex items-center gap-2 text-xs font-medium text-neutral-700 underline underline-offset-4 sm:mt-2 sm:text-sm md:text-base"
             >
               See all latest work
               <span className="transition-transform group-hover:translate-x-1">
@@ -323,23 +323,23 @@ export default function Home() {
               </span>
             </a>
           </div>
-          <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
+          <div className="grid w-full gap-3 sm:gap-4 md:grid-cols-2 md:gap-5 lg:gap-6 xl:gap-8">
             {WORKS.map((work) => (
               <Link
                 key={work.title}
                 href={`/work/${work.slug}`}
-                className="group overflow-hidden rounded-xl bg-white transition-transform duration-200 hover:-translate-y-1 sm:rounded-2xl"
+                className="group w-full overflow-hidden rounded-lg bg-white transition-transform duration-200 hover:-translate-y-1 sm:rounded-xl md:rounded-2xl"
               >
-                <div className="relative aspect-[16/10] overflow-hidden bg-neutral-100">
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-100">
                   <Image
                     src={work.image}
                     alt={work.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, 600px"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
                     className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
                   />
                 </div>
-                <div className="flex items-center justify-between px-4 py-4 text-sm font-semibold sm:px-5 sm:py-5 sm:text-base">
+                <div className="flex w-full items-center justify-between px-3 py-3 text-xs font-semibold sm:px-4 sm:py-4 sm:text-sm md:px-5 md:py-5 md:text-base">
                   <span>{work.title}</span>
                   <span className="text-neutral-500">{work.year}</span>
                 </div>
@@ -349,25 +349,25 @@ export default function Home() {
         </section>
 
         {/* Services Section */}
-        <section className="reveal-base space-y-8 sm:space-y-10" id="services" ref={setRevealRef as any}>
-          <div className="flex items-center justify-between">
+        <section className="reveal-base w-full space-y-6 sm:space-y-8 md:space-y-10" id="services" ref={setRevealRef as any}>
+          <div className="flex w-full items-center justify-between">
             <div>
               <p className="text-xs font-medium uppercase tracking-wider text-neutral-500 sm:text-sm">
                 • Services
               </p>
-              <h3 className="text-3xl font-bold sm:text-4xl md:text-5xl">What I Do</h3>
+              <h3 className="text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl">What I Do</h3>
             </div>
           </div>
-          <div className="grid gap-10 sm:gap-12 lg:gap-16">
+          <div className="grid w-full gap-8 sm:gap-10 md:gap-12 lg:gap-14 xl:gap-16">
             {SERVICES.map((service, index) => (
               <div
                 key={service.title}
-                className={`grid gap-6 sm:gap-8 lg:grid-cols-2 lg:gap-12 ${
+                className={`grid w-full gap-5 sm:gap-6 md:gap-8 lg:grid-cols-2 lg:gap-10 xl:gap-12 ${
                   index % 2 === 1 ? "lg:grid-flow-dense" : ""
                 }`}
               >
                 <div
-                  className={`relative aspect-[4/5] overflow-hidden rounded-xl bg-neutral-100 sm:rounded-2xl ${
+                  className={`relative aspect-[4/5] w-full overflow-hidden rounded-lg bg-neutral-100 sm:rounded-xl md:rounded-2xl ${
                     index % 2 === 1 ? "lg:col-start-2" : ""
                   }`}
                 >
@@ -375,24 +375,24 @@ export default function Home() {
                     src={service.image}
                     alt={service.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, 600px"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     className="h-full w-full object-cover"
                   />
                 </div>
-                <div className="flex flex-col justify-center gap-3 sm:gap-4">
+                <div className="flex w-full flex-col justify-center gap-2 sm:gap-3 md:gap-4">
                   <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-neutral-600 sm:gap-3 sm:text-sm">
                     <span>{service.number}</span>
-                    <span className="h-px w-8 bg-neutral-300 sm:w-10" />
+                    <span className="h-px w-6 bg-neutral-300 sm:w-8 md:w-10" />
                     <span>{service.title}</span>
                   </div>
-                  <p className="text-lg leading-relaxed text-neutral-800 sm:text-xl lg:text-2xl">
+                  <p className="text-base leading-relaxed text-neutral-800 sm:text-lg md:text-xl lg:text-2xl">
                     {service.desc}
                   </p>
-                  <div className="flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-wide text-neutral-600 sm:text-sm">
+                  <div className="flex flex-wrap gap-1.5 text-xs font-semibold uppercase tracking-wide text-neutral-600 sm:gap-2 sm:text-sm">
                     {service.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full border border-neutral-300 px-3 py-1.5 sm:px-4 sm:py-2"
+                        className="rounded-full border border-neutral-300 px-2.5 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2"
                       >
                         {tag}
                       </span>
@@ -405,29 +405,29 @@ export default function Home() {
         </section>
 
         {/* About Me Section */}
-        <section className="reveal-base space-y-8 sm:space-y-12" ref={setRevealRef as any}>
-          <div className="text-center">
+        <section className="reveal-base w-full space-y-6 sm:space-y-8 md:space-y-10 lg:space-y-12" ref={setRevealRef as any}>
+          <div className="w-full text-center">
             <p className="text-xs font-medium uppercase tracking-wider text-neutral-500 sm:text-sm">
               • About Me
             </p>
-            <h3 className="mt-3 text-3xl font-bold sm:mt-4 sm:text-4xl md:text-5xl">
+            <h3 className="mt-2 text-2xl font-bold sm:mt-3 sm:text-3xl md:mt-4 md:text-4xl lg:text-5xl">
               Mueez Khurshid
             </h3>
-            <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-neutral-700 sm:mt-6 sm:text-lg">
+            <p className="mx-auto mt-3 w-full text-sm leading-relaxed text-neutral-700 sm:mt-4 sm:text-base md:mt-6 md:text-lg lg:max-w-4xl">
               Professional designer with 10+ years of experience leading teams
               across experiential design, architecture, and digital worlds.
             </p>
           </div>
-          <div className="relative mx-auto aspect-video max-w-4xl overflow-hidden rounded-xl bg-black sm:rounded-2xl">
+          <div className="relative mx-auto aspect-video w-full overflow-hidden rounded-lg bg-black sm:rounded-xl md:rounded-2xl lg:max-w-6xl">
             <Image
               src="/images/image_34.png"
               alt="Mueez Khurshid portrait"
               fill
-              sizes="(max-width: 768px) 100vw, 1200px"
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1200px"
               className="h-full w-full object-cover"
             />
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid w-full gap-4 sm:grid-cols-2 sm:gap-5 md:gap-6 lg:grid-cols-4">
             {[
               { number: "10+", label: "Years of Design and Digital Experience." },
               { number: "100+", label: "Successful projects with well known clients." },
@@ -436,9 +436,9 @@ export default function Home() {
             ].map((stat, index) => (
               <div
                 key={index}
-                className="space-y-2 text-center"
+                className="space-y-1.5 text-center sm:space-y-2"
               >
-                <div className="text-4xl font-bold sm:text-5xl lg:text-6xl">
+                <div className="text-3xl font-bold sm:text-4xl md:text-5xl lg:text-6xl">
                   {stat.number}
                 </div>
                 <p className="text-xs leading-relaxed text-neutral-700 sm:text-sm">
@@ -450,13 +450,13 @@ export default function Home() {
         </section>
 
         {/* Footer */}
-        <footer id="contact" className="reveal-base space-y-6 border-t border-neutral-200 pt-8 sm:space-y-8 sm:pt-12" ref={setRevealRef as any}>
-          <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
-            <div className="space-y-3 sm:space-y-4">
-              <h4 className="text-base font-medium text-neutral-700 sm:text-lg">
+        <footer id="contact" className="reveal-base w-full space-y-5 border-t border-neutral-200 pt-6 sm:space-y-6 sm:pt-8 md:space-y-8 md:pt-10 lg:pt-12" ref={setRevealRef as any}>
+          <div className="grid w-full gap-5 sm:gap-6 md:gap-8 lg:grid-cols-2">
+            <div className="space-y-2 sm:space-y-3 md:space-y-4">
+              <h4 className="text-sm font-medium text-neutral-700 sm:text-base md:text-lg">
                 Creative engineering for thoughtful brands
               </h4>
-              <div className="space-y-1 text-sm text-neutral-600 sm:space-y-2">
+              <div className="space-y-1 text-xs text-neutral-600 sm:space-y-1.5 sm:text-sm">
                 <p>Toronto Ontario, Canada</p>
                 <a
                   href="mailto:mueez.kh@gmail.com"
@@ -466,8 +466,8 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            <div className="flex flex-col gap-3 sm:gap-4 lg:items-end">
-              <div className="flex flex-wrap gap-4 sm:gap-6">
+            <div className="flex flex-col gap-2.5 sm:gap-3 md:gap-4 lg:items-end">
+              <div className="flex flex-wrap gap-3 sm:gap-4 md:gap-6">
                 <a
                   href="#"
                   className="text-xs font-medium hover:underline sm:text-sm"
@@ -493,7 +493,7 @@ export default function Home() {
                   Privacy policy
                 </a>
               </div>
-              <div className="flex gap-3 sm:gap-4">
+              <div className="flex gap-2.5 sm:gap-3 md:gap-4">
                 <a
                   href="https://www.behance.net/mueezkh"
                   target="_blank"
