@@ -4,99 +4,93 @@ import Image from "next/image";
 import type { PointerEvent } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-const IMAGES = [
-  {
-    src: "/images/image_1.jpg",
-    alt: "Row of classic cars with one lit interior",
-  },
-  {
-    src: "/images/image_2.png",
-    alt: "Green Lacoste retail counter with neon signage",
-  },
-  {
-    src: "/images/image_3.jpeg",
-    alt: "Stacked posters with graphic typography",
-  },
-  {
-    src: "/images/image_4.png",
-    alt: "Bold editorial spread with cyan highlights",
-  },
-  {
-    src: "/images/image_5.jpg",
-    alt: "Minimal album cover mockups on a surface",
-  },
-  {
-    src: "/images/image_6.jpeg",
-    alt: "Abstract colorful spheres on a dark background",
-  },
-  { src: "/images/image_7.png", alt: "Gradient editorial cover artwork" },
-  {
-    src: "/images/image_8.png",
-    alt: "Poster wall with blue type compositions",
-  },
-  { src: "/images/image_9.jpeg", alt: "Bright sample pack cover design" },
+// Marquee strip images
+const MARQUEE_IMAGES = [
+  { src: "/images/image_33.png", alt: "Palm Angels storefront" },
+  { src: "/images/image_24.png", alt: "Jeddah modern building" },
+  { src: "/images/image_6.jpeg", alt: "Nike sneakers with flowers" },
+  { src: "/images/image_7.png", alt: "Xbox with gradient lighting" },
+  { src: "/images/image_3.jpeg", alt: "Purple transparent chair" },
+  { src: "/images/image_26.png", alt: "Lacoste green installation" },
+  { src: "/images/image_4.png", alt: "Dark moody product shot" },
 ];
 
-const HERO_FEATURES = [
-  {
-    title: "Visual Identity Lab",
-    desc: "Material-driven identity systems—palette, type, textures, and signature.",
-    image: "/images/image_8.png",
-  },
-  {
-    title: "Covers",
-    desc: "Over 250 editorial designs delivered this year.",
-    image: "/images/image_9.jpeg",
-  },
-  {
-    title: "Foam Serum Launch",
-    desc: "Product CGI across hero, ads, and socials.",
-    image: "/images/image_5.jpg",
-  },
-  {
-    title: "Modular Websites",
-    desc: "Component-driven builds with responsive grids and subtle motion.",
-    image: "/images/image_4.png",
-  },
+// Brand logos
+const BRAND_LOGOS = [
+  { src: "/images/logo1.png", alt: "Pepsi" },
+  { src: "/images/logo2.png", alt: "Converse" },
+  { src: "/images/logo3.png", alt: "FIFA" },
+  { src: "/images/logo4.png", alt: "Innisfree" },
+  { src: "/images/logo5.png", alt: "Nike" },
+  { src: "/images/logo6.png", alt: "Adidas" },
+  { src: "/images/logo7.png", alt: "Puma" },
+  { src: "/images/logo8.png", alt: "Zara" },
+  { src: "/images/logo9.png", alt: "Brand" },
 ];
 
+// Latest work projects
 const WORKS = [
-  { title: "Saucony Run As One", year: "2025", image: "/images/image_6.jpeg" },
-  { title: "Jeddah Delta Hotel", year: "2024", image: "/images/image_4.png" },
-  { title: "Flow Water", year: "2025", image: "/images/image_5.jpg" },
-  { title: "Crocs ComplexCon", year: "2025", image: "/images/image_7.png" },
-  { title: "LEGO x Nike", year: "2025", image: "/images/image_2.png" },
-  { title: "FIFA World Cup 2026", year: "2024", image: "/images/image_1.jpg" },
+  {
+    title: "Saucony Run As One",
+    year: "2025",
+    image: "/images/image_19.gif",
+  },
+  {
+    title: "Jeddah Delta Hotel",
+    year: "2024",
+    image: "/images/image_24.png",
+  },
+  { title: "Flow Water", year: "2025", image: "/images/image_37.png" },
+  {
+    title: "Crocs ComplexCon",
+    year: "2025",
+    image: "/images/image_21.gif",
+  },
+  { title: "LEGO x Nike", year: "2025", image: "/images/image_22.gif" },
+  {
+    title: "FIFA World Cup 2026",
+    year: "2024",
+    image: "/images/image_25.png",
+  },
+  {
+    title: "Lacoste Melrose",
+    year: "2024",
+    image: "/images/image_31.png",
+  },
+  {
+    title: "CUBE Exchange",
+    year: "2025",
+    image: "/images/image_23.gif",
+  },
+  {
+    title: "Group Therapy",
+    year: "2025",
+    image: "/images/image_30.png",
+  },
 ];
 
+// Services
 const SERVICES = [
   {
     number: "01",
     title: "Art Direction",
-    desc: "Look, feel, and emotion for brands—every frame deliberate.",
-    image: "/images/image_8.png",
-    tags: ["Art Direction", "Storytelling", "Brand Identity"],
+    desc: "Helping direct the look, feel, and emotion of your brand. Every frame, every detail, purposefully designed.",
+    image: "/images/image_33.png",
+    tags: ["Art Direction", "Story Telling", "Brand Identity"],
   },
   {
     number: "02",
     title: "3D Renderings",
-    desc: "Immersive 3D worlds that translate strategy into tangible visuals.",
-    image: "/images/image_6.jpeg",
-    tags: ["3D Rendering", "Modeling", "Installations"],
+    desc: "Transforming concepts into immersive 3D worlds that feel tangible, emotive, and built to tell a story.",
+    image: "/images/image_27.png",
+    tags: ["3D Rendering", "3D Modeling", "Physical Installations"],
   },
   {
     number: "03",
-    title: "Animation",
+    title: "Animations",
     desc: "Motion systems that engage across ads, socials, and product.",
     image: "/images/image_3.jpeg",
     tags: ["Brand Identity", "Animation", "Lighting"],
-  },
-  {
-    number: "04",
-    title: "Package & Editorial",
-    desc: "Long-form layouts and packaging built to stay beautiful and legible.",
-    image: "/images/image_5.jpg",
-    tags: ["Magazine Design", "Social Marketing", "Editorial Layouts"],
   },
 ];
 
@@ -134,7 +128,10 @@ function MarqueeStrip() {
   const [isDragging, setIsDragging] = useState(false);
   const dragState = useRef({ startX: 0, scrollLeft: 0, pointerId: 0 });
 
-  const items = useMemo(() => [...IMAGES, ...IMAGES], []);
+  const items = useMemo(
+    () => [...MARQUEE_IMAGES, ...MARQUEE_IMAGES],
+    []
+  );
 
   useEffect(() => {
     const container = containerRef.current;
@@ -184,13 +181,13 @@ function MarqueeStrip() {
 
   return (
     <div
-      className="rounded-2xl border border-black/10 bg-white shadow-[0_18px_40px_rgba(0,0,0,0.06)]"
+      className="overflow-hidden rounded-2xl"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
         ref={containerRef}
-        className="no-scrollbar relative flex gap-4 overflow-x-scroll rounded-2xl p-4"
+        className="no-scrollbar flex gap-4 overflow-x-scroll"
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={endDrag}
@@ -200,9 +197,8 @@ function MarqueeStrip() {
         {items.map((image, index) => (
           <div
             key={`${image.src}-${index}`}
-            className="group relative h-52 w-72 shrink-0 overflow-hidden rounded-xl border border-black/8 bg-neutral-100"
+            className="group relative h-64 w-80 shrink-0 overflow-hidden rounded-xl bg-neutral-100"
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-black/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             <Image
               src={image.src}
               alt={image.alt}
@@ -212,10 +208,6 @@ function MarqueeStrip() {
               draggable={false}
               priority={index < 4}
             />
-            <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-white/70 px-4 py-3 text-xs font-medium uppercase tracking-[0.08em] backdrop-blur">
-              <span>Graphic Design</span>
-              <span>Toronto</span>
-            </div>
           </div>
         ))}
       </div>
@@ -228,140 +220,80 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white text-black">
-      <main className="mx-auto flex max-w-6xl flex-col gap-16 px-6 py-16 sm:py-20 lg:py-24">
-        <header className="flex flex-col gap-10">
-          <div className="flex items-center justify-between">
-            <div className="flex flex-wrap items-center gap-3 text-sm font-semibold uppercase tracking-[0.14em]">
-              <span className="rounded-full bg-black px-4 py-2 text-white">
-                Mueez Khurshid
-              </span>
-              <span className="rounded-full border border-black/10 px-4 py-2 text-black">
-                Toronto Based Creative
-              </span>
-              <span className="rounded-full border border-black/10 px-4 py-2 text-black">
-                Graphic · 3D · Motion
-              </span>
-            </div>
-            <a
-              href="#contact"
-              className="hidden rounded-full border border-black px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] hover:bg-black hover:text-white sm:inline-flex"
-            >
-              Get in touch
-            </a>
-          </div>
-          <div className="reveal-base space-y-6" ref={setRevealRef as any}>
-            <h1 className="text-[2.9rem] font-semibold leading-tight sm:text-5xl lg:text-[3.6rem]">
-              Creative engineering for thoughtful brands rooted in product and culture.
-            </h1>
-            <p className="max-w-2xl text-lg leading-relaxed text-neutral-700">
-              Visual identity, editorial, and 3D-driven campaigns shipped with clarity, pace,
-              and systems thinking. Building for founders, cultural spaces, and product teams
-              who want work that lasts.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href="#work"
-                className="rounded-full bg-black px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(0,0,0,0.18)]"
-              >
-                See latest work
-              </a>
-              <a
-                href="#services"
-                className="rounded-full border border-black px-6 py-3 text-sm font-semibold text-black transition hover:-translate-y-0.5 hover:bg-black hover:text-white"
-              >
-                Services
-              </a>
-            </div>
-          </div>
-          <div className="reveal-base grid gap-4 rounded-2xl border border-black/10 bg-neutral-50 px-6 py-5 text-sm font-medium uppercase tracking-[0.12em] text-neutral-700 shadow-inner" ref={setRevealRef as any}>
-            <div className="flex items-center justify-between border-b border-black/10 pb-4">
-              <span>Based in</span>
-              <span className="text-black">Toronto · EST</span>
-            </div>
-            <div className="flex items-center justify-between border-b border-black/10 pb-4">
-              <span>Availability</span>
-              <span className="text-black">Feb &amp; Mar 2025</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span>Scope</span>
-              <span className="text-black">Identity · Motion · Product</span>
-            </div>
-          </div>
+      <main className="mx-auto flex max-w-7xl flex-col gap-24 px-6 py-12 lg:px-20 lg:py-20">
+        {/* Hero Section */}
+        <header className="reveal-base flex min-h-[70vh] flex-col items-center justify-center gap-8 text-center" ref={setRevealRef as any}>
+          <h1 className="text-[4rem] font-bold leading-none tracking-tight sm:text-[5rem] lg:text-[6rem]">
+            Mueez Khurshid
+          </h1>
+          <h2 className="text-3xl font-normal sm:text-4xl lg:text-5xl">
+            Toronto Based Creative
+          </h2>
+          <a
+            href="#contact"
+            className="group mt-4 inline-flex items-center gap-2 text-lg font-medium underline underline-offset-4 transition-transform hover:-translate-y-0.5"
+          >
+            Get In Touch
+            <span className="transition-transform group-hover:translate-x-1">
+              →
+            </span>
+          </a>
         </header>
 
+        {/* Marquee Strip Section */}
         <section className="reveal-base space-y-6" ref={setRevealRef as any}>
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
-                Selected visuals
-              </p>
-              <h2 className="text-2xl font-semibold text-black">
-                Scroll, hover, or drag to explore.
-              </h2>
-            </div>
-            <span className="text-xs font-medium uppercase tracking-[0.14em] text-neutral-600">
-              Infinite gallery
-            </span>
-          </div>
           <MarqueeStrip />
         </section>
 
-        <section className="reveal-base grid gap-6" ref={setRevealRef as any}>
-          <div className="flex items-center justify-between">
-            <div className="space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
-                Highlights
-              </p>
-              <h3 className="text-2xl font-semibold text-black">Identity lab</h3>
-            </div>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2">
-            {HERO_FEATURES.map((feature) => (
-              <div
-                key={feature.title}
-                className="group grid gap-3 rounded-2xl border border-black/10 bg-white p-4 shadow-[0_10px_30px_rgba(0,0,0,0.05)] md:grid-cols-[140px_1fr]"
-              >
-                <div className="relative aspect-square overflow-hidden rounded-xl bg-neutral-100">
-                  <Image
-                    src={feature.image}
-                    alt={feature.title}
-                    fill
-                    sizes="(max-width: 768px) 40vw, 160px"
-                    className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
-                  />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <h4 className="text-lg font-semibold">{feature.title}</h4>
-                  <p className="text-sm leading-relaxed text-neutral-700">{feature.desc}</p>
-                </div>
+        {/* Brand Logos Section */}
+        <section className="reveal-base space-y-12" ref={setRevealRef as any}>
+          <h3 className="text-center text-lg font-normal text-neutral-700 sm:text-xl">
+            Over 100 design projects created for top brands including
+          </h3>
+          <div className="flex flex-wrap items-center justify-center gap-8 opacity-60 grayscale lg:gap-12">
+            {BRAND_LOGOS.map((logo, index) => (
+              <div key={index} className="relative h-10 w-24">
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  fill
+                  sizes="100px"
+                  className="object-contain"
+                />
               </div>
             ))}
           </div>
         </section>
 
-        <section className="reveal-base space-y-6" id="work" ref={setRevealRef as any}>
-          <div className="flex items-center justify-between">
-            <div className="space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
-                Work
-              </p>
-              <h3 className="text-2xl font-semibold text-black">Latest work</h3>
-              <p className="max-w-2xl text-base leading-relaxed text-neutral-700">
-                Design exploration, brand innovation, and crafted experiences that blur physical and digital.
-              </p>
-            </div>
+        {/* Latest Work Section */}
+        <section className="reveal-base space-y-8" id="work" ref={setRevealRef as any}>
+          <div className="flex flex-col gap-4">
+            <p className="text-sm font-medium uppercase tracking-wider text-neutral-500">
+              • Work
+            </p>
+            <h3 className="text-4xl font-bold sm:text-5xl lg:text-[3.5rem]">
+              Latest work
+            </h3>
+            <p className="max-w-3xl text-lg leading-relaxed text-neutral-700">
+              Dive into my most recent work — a mix of design exploration,
+              brand innovation, and 3D crafted experiences that blur the lines
+              between physical and digital.
+            </p>
             <a
-              className="hidden rounded-full border border-black px-5 py-3 text-sm font-semibold text-black transition hover:-translate-y-0.5 hover:bg-black hover:text-white sm:inline-flex"
               href="#contact"
+              className="group mt-2 inline-flex items-center gap-2 text-base font-medium text-neutral-700 underline underline-offset-4"
             >
-              See all work
+              See all latest work
+              <span className="transition-transform group-hover:translate-x-1">
+                →
+              </span>
             </a>
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             {WORKS.map((work) => (
               <div
                 key={work.title}
-                className="group overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_16px_40px_rgba(0,0,0,0.06)] transition-transform duration-200 hover:-translate-y-1"
+                className="group overflow-hidden rounded-2xl bg-white transition-transform duration-200 hover:-translate-y-1"
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-neutral-100">
                   <Image
@@ -370,10 +302,9 @@ export default function Home() {
                     fill
                     sizes="(max-width: 768px) 100vw, 600px"
                     className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
-                    priority={work.title === "Saucony Run As One"}
                   />
                 </div>
-                <div className="flex items-center justify-between px-5 py-4 text-sm font-semibold">
+                <div className="flex items-center justify-between px-5 py-5 text-base font-semibold">
                   <span>{work.title}</span>
                   <span className="text-neutral-500">{work.year}</span>
                 </div>
@@ -382,50 +313,51 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Services Section */}
         <section className="reveal-base space-y-10" id="services" ref={setRevealRef as any}>
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
-                Services
+              <p className="text-sm font-medium uppercase tracking-wider text-neutral-500">
+                • Services
               </p>
-              <h3 className="text-2xl font-semibold text-black">What I do</h3>
+              <h3 className="text-4xl font-bold sm:text-5xl">What I Do</h3>
             </div>
-            <a
-              href="#contact"
-              className="text-sm font-semibold underline underline-offset-4"
-            >
-              Book a project
-            </a>
           </div>
-          <div className="grid gap-6 md:grid-cols-2">
-            {SERVICES.map((service) => (
+          <div className="grid gap-12 lg:gap-16">
+            {SERVICES.map((service, index) => (
               <div
                 key={service.title}
-                className="grid gap-3 rounded-2xl border border-black/10 bg-white p-4 shadow-[0_14px_34px_rgba(0,0,0,0.05)] sm:grid-cols-[220px_1fr]"
+                className={`grid gap-8 lg:grid-cols-2 lg:gap-12 ${
+                  index % 2 === 1 ? "lg:grid-flow-dense" : ""
+                }`}
               >
-                <div className="relative aspect-square overflow-hidden rounded-xl bg-neutral-100 sm:aspect-[4/5]">
+                <div
+                  className={`relative aspect-[4/5] overflow-hidden rounded-2xl bg-neutral-100 ${
+                    index % 2 === 1 ? "lg:col-start-2" : ""
+                  }`}
+                >
                   <Image
                     src={service.image}
                     alt={service.title}
                     fill
-                    sizes="(max-width: 768px) 40vw, 220px"
+                    sizes="(max-width: 768px) 100vw, 600px"
                     className="h-full w-full object-cover"
                   />
                 </div>
-                <div className="flex flex-col gap-3">
-                  <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.12em] text-neutral-600">
+                <div className="flex flex-col justify-center gap-4">
+                  <div className="flex items-center gap-3 text-sm font-semibold uppercase tracking-wider text-neutral-600">
                     <span>{service.number}</span>
                     <span className="h-px w-10 bg-neutral-300" />
                     <span>{service.title}</span>
                   </div>
-                  <p className="text-base leading-relaxed text-neutral-800">
+                  <p className="text-xl leading-relaxed text-neutral-800 lg:text-2xl">
                     {service.desc}
                   </p>
-                  <div className="flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-[0.1em] text-neutral-600">
+                  <div className="flex flex-wrap gap-2 text-sm font-semibold uppercase tracking-wide text-neutral-600">
                     {service.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full border border-black/10 px-3 py-1"
+                        className="rounded-full border border-neutral-300 px-4 py-2"
                       >
                         {tag}
                       </span>
@@ -437,107 +369,124 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="reveal-base grid gap-10 lg:grid-cols-[1.1fr_1fr]" ref={setRevealRef as any}>
-          <div className="space-y-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
-              About
+        {/* About Me Section */}
+        <section className="reveal-base space-y-12" ref={setRevealRef as any}>
+          <div className="text-center">
+            <p className="text-sm font-medium uppercase tracking-wider text-neutral-500">
+              • About Me
             </p>
-            <h3 className="text-3xl font-semibold text-black">Mueez Khurshid</h3>
-            <p className="text-lg leading-relaxed text-neutral-700">
-              Professional designer with a decade of experience across experiential design,
-              architecture, and digital worlds. Building calm, high-impact visuals through
-              systems, motion, and material-driven details.
+            <h3 className="mt-4 text-4xl font-bold sm:text-5xl">
+              Mueez Khurshid
+            </h3>
+            <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-neutral-700">
+              Professional designer with 10+ years of experience leading teams
+              across experiential design, architecture, and digital worlds.
             </p>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {[
-                "10+ years design & digital experience",
-                "100+ successful projects delivered",
-                "40+ brands & startups supported",
-                "Fire drills solved when teams needed it most",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-2xl border border-black/10 bg-neutral-50 px-4 py-3 text-sm font-semibold text-neutral-800"
-                >
-                  {item}
-                </div>
-              ))}
-            </div>
           </div>
-          <div className="grid gap-6">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-100">
-              <Image
-                src="/images/image_2.png"
-                alt="Studio portrait"
-                fill
-                sizes="(max-width: 768px) 100vw, 520px"
-                className="h-full w-full object-cover"
-              />
-            </div>
-            <div className="grid grid-cols-2 gap-3 text-center text-sm font-semibold uppercase tracking-[0.12em] text-neutral-600">
-              {["Toronto", "Worldwide", "Remote", "In-Person"].map((label) => (
-                <div
-                  key={label}
-                  className="rounded-xl border border-black/10 bg-white px-3 py-3 shadow-[0_10px_24px_rgba(0,0,0,0.05)]"
-                >
-                  {label}
+          <div className="relative mx-auto aspect-video max-w-4xl overflow-hidden rounded-2xl bg-black">
+            <Image
+              src="/images/image_34.png"
+              alt="Mueez Khurshid portrait"
+              fill
+              sizes="(max-width: 768px) 100vw, 1200px"
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { number: "10+", label: "Years of Design and Digital Experience." },
+              { number: "100+", label: "Successful projects with well known clients." },
+              { number: "30+", label: "Brands and startups that trusted me to shape their identity." },
+              { number: "900+", label: "Fire's put out when clients needed it most." },
+            ].map((stat, index) => (
+              <div
+                key={index}
+                className="space-y-2 text-center"
+              >
+                <div className="text-5xl font-bold lg:text-6xl">
+                  {stat.number}
                 </div>
-              ))}
-            </div>
+                <p className="text-sm leading-relaxed text-neutral-700">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
 
-        <section
-          id="contact"
-          className="reveal-base rounded-3xl border border-black/10 bg-black px-6 py-10 text-white"
-          ref={setRevealRef as any}
-        >
-          <div className="flex flex-wrap items-start justify-between gap-6">
-            <div className="space-y-3">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/70">
-                Contact
-              </p>
-              <h3 className="text-3xl font-semibold">
-                Let's build the next campaign, product, or identity.
-              </h3>
-              <p className="max-w-3xl text-base leading-relaxed text-white/80">
-                Fast collaboration, deliberate visuals, and production-ready assets that
-                keep your team moving.
-              </p>
-            </div>
-            <div className="flex flex-col gap-3 text-sm font-semibold">
-              <a
-                href="mailto:hello@mueez.studio"
-                className="rounded-full bg-white px-6 py-3 text-black transition hover:-translate-y-0.5"
-              >
-                hello@mueez.studio
-              </a>
-              <div className="text-white/80">
-                Toronto, Ontario · Canada
-                <br />
-                Available worldwide
+        {/* Footer */}
+        <footer id="contact" className="reveal-base space-y-8 border-t border-neutral-200 pt-12" ref={setRevealRef as any}>
+          <div className="grid gap-8 lg:grid-cols-2">
+            <div className="space-y-4">
+              <h4 className="text-lg font-medium text-neutral-700">
+                Creative engineering for thoughtful brands
+              </h4>
+              <div className="space-y-2 text-neutral-600">
+                <p>Toronto Ontario, Canada</p>
+                <a
+                  href="mailto:mueez.kh@gmail.com"
+                  className="block font-medium text-black hover:underline"
+                >
+                  mueez.kh@gmail.com
+                </a>
               </div>
-              <div className="flex gap-3">
+            </div>
+            <div className="flex flex-col gap-4 lg:items-end">
+              <div className="flex gap-6">
+                <a
+                  href="#"
+                  className="text-sm font-medium hover:underline"
+                >
+                  About
+                </a>
+                <a
+                  href="#work"
+                  className="text-sm font-medium hover:underline"
+                >
+                  Works
+                </a>
+                <a
+                  href="#contact"
+                  className="text-sm font-medium hover:underline"
+                >
+                  Contact
+                </a>
+                <a
+                  href="#"
+                  className="text-sm font-medium hover:underline"
+                >
+                  Privacy policy
+                </a>
+              </div>
+              <div className="flex gap-4">
                 <a
                   href="https://www.behance.net/mueezkh"
-                  className="underline underline-offset-4 hover:text-white"
                   target="_blank"
                   rel="noreferrer"
+                  className="text-sm font-medium hover:underline"
                 >
                   Behance
                 </a>
                 <a
                   href="https://www.instagram.com/4thtale/"
-                  className="underline underline-offset-4 hover:text-white"
                   target="_blank"
                   rel="noreferrer"
+                  className="text-sm font-medium hover:underline"
                 >
                   Instagram
+                </a>
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-sm font-medium hover:underline"
+                >
+                  X
                 </a>
               </div>
             </div>
           </div>
-        </section>
+        </footer>
       </main>
     </div>
   );
